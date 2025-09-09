@@ -1,0 +1,64 @@
+import React, {useState, useEffect} from "react";
+import Header, {CarrinhoProvedor} from "../components/Header/Header";
+import CardSection from "../components/Cards/Cards";
+import FooterSection from "../components/Footer/Footer";
+import InforSection from "../components/InforSection/InforSection";
+import { Container } from "../components/Header/style";
+import { ProvedorPesquisa} from "../components/Navgation/NavBar"
+import Login from "../components/Users/User";
+import ProdutosDoCarrinho from "../components/Carrinho/Carrinho";
+import Carousel from "../components/Galeria/Galeria"
+
+
+import img4 from "../image/img4.png"
+import img1 from "../image/img1.png"
+
+
+
+
+
+function  Home(){
+    const [loginAberto, setLoginAberto] = useState(false)
+    const [carrinhoAberto, setCarrinhoAberto] = useState(false)
+    const imagens = [img4, img1]
+
+    useEffect(() => {
+        if (carrinhoAberto) {
+            const element = document.getElementById("carrinho-container");
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    }, [carrinhoAberto]); // roda quando carrinhoAberto muda
+
+    
+
+    return(
+        <>
+        <Container>
+            <ProvedorPesquisa>
+                <CarrinhoProvedor>
+                    <Header abrirLogin={() => setLoginAberto(true)}
+                        carrinhoAberto={carrinhoAberto}
+                        setCarrinhoAberto={setCarrinhoAberto}
+                    />
+                    <Carousel images={imagens} />
+                    <InforSection/>
+                    {carrinhoAberto ? (
+                        <ProdutosDoCarrinho fecharCarrinho={() => setCarrinhoAberto(false)} />
+                    ):(
+                        <CardSection/>
+
+                    )}
+                    <FooterSection/>
+                </CarrinhoProvedor>
+            </ProvedorPesquisa>
+            {loginAberto && <Login fecharLogin={() => setLoginAberto(false)}/>}
+        </Container>
+
+        </>
+    )
+}
+
+export default Home;
+
