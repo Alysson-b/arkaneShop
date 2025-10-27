@@ -86,4 +86,7 @@ export const Cartao =styled.div`
     align-items: center;
     justify-content: space-evenly;
     gap: 1.5em;
+    img{
+        border-radius: 12px;
+    }
 `

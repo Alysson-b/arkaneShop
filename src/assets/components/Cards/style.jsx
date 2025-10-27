@@ -24,13 +24,10 @@ export const HeaderMenu = styled.div`
 
 export const Cards = styled.div`
     display: grid;
-    gap: 6rem;
-
-    grid-template-columns: repeat(auto-fit, 220px);
-    justify-content: center;
-    justify-items: center;
-
-    margin: 3em auto; 
+    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    margin: 8rem auto; 
+    width: 100%;
     max-width: 1200px; 
 
     .produto-nao-encontrado {
@@ -48,20 +45,17 @@ export const Card= styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     border-radius: 10px;
     padding: 1em;
-    background: #111;
-
-    
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-
+    gap: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
     
     &:hover {
-        transform: translateY(-5px); 
-        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.6); 
+        /* transform: translateY(-2px);  */
+        box-shadow: 0 0px 8px rgba(255, 255, 255, 0.7); 
+        background: transparent;
+        
     }
 
     img {
@@ -70,7 +64,7 @@ export const Card= styled.div`
         object-fit: cover;
         border-radius: 10%;
     }
-
++
     p{
         margin: 1em 0;
         font-family: "roboto", sans-serif;
@@ -86,15 +80,15 @@ export const Card= styled.div`
         padding: 0.5em 4em;
         border: none;
         border-radius: 8px;
-        color: black;
-        background: #26f526;
+        color: #fff;
+        background: #4d4d4d;
         font-family: "Montserrat", sans-serif;
         font-size: 1em;
         font-weight: 600;
         transition: 0.3s ease-in-out;
 
         &:hover{
-            background: #00ff00;
+            background: #036903;
             transform: scale(1.03);
         }
     }

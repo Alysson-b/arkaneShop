@@ -6,116 +6,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
   
 }
 
-/* Overlay que cobre toda a tela */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-
-  opacity: 0;
-  transform: translateY(20px);
-  animation: shadow-drop 0.5s ease-in-out forwards;
-}
-
-@keyframes shadow-drop {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-    box-shadow: 0 0 0 rgba(0,0,0,0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    box-shadow: 0 0 20px rgba(0,0,0,0.35);
-  }
-}
 
 
-/* Conteúdo do modal */
-.modal-content {
-  background-color: #fff;
-  width: 900px;
-  max-width: 90%;
-  display: flex;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* Lado esquerdo: imagem */
-.modal-left {
-  flex: 1;
-  background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.modal-left img {
-  max-width: 100%;
-  max-height: 600px;
-  object-fit: contain;
-}
-
-/* Lado direito: informações do produto */
-.modal-right {
-  flex: 1;
-  padding: 30px 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 
-.modal-right h2 {
-  margin-bottom: 20px;
-  font-size: 2em;
-  color: black;
-  font-family: "Montserrat", sans-serif;
 
-  
-}
-.modal-right h3 {
-  font-family: "open sans", sans-serif;
-  margin-bottom: 6em;
-  font-size: 15px;
-  font-weight: 700;
-  color: black;
-  
-}
-.modal-right .preco {
-  font-size: 30px;
-  font-weight: bold;
-  color: #ff0400;
-  margin-bottom: 25px;
-}
 
-.btn-comprar {
-  padding: 14px 25px;
-  background-color: #02fd0f;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 18px;
-  margin-top: 1.5em;
-  transition: all 0.3s ease;
-}
-
-.btn-comprar:hover {
-  background-color: #018f08;
-}
 
 
 
@@ -179,4 +79,100 @@
   border: 1px solid #ccc;
   
   border-radius: 4px;
+}
+
+.listProdutos ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  list-style: none;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-right: 7rem;
+
+}
+.listProdutos li{
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.listProdutos li:hover{
+  text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff;
+  color: #fcfcff;
+
+}
+
+
+.sobre-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  font-family: "Poppins", sans-serif;
+  color: #ffffff;
+  line-height: 1.7;
+}
+
+.sobre-container h1 {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.sobre-container h3 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  font-weight: 500;
+  color: #a1a1a1;
+}
+
+.sobre-bloco {
+  margin-bottom: 45px;
+}
+
+.sobre-bloco h2 {
+  font-size: 1.7rem;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.sobre-bloco h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #ff4e00; 
+  display: block;
+  margin-top: 6px;
+  border-radius: 3px;
+}
+
+.sobre-bloco ul {
+  padding-left: 20px;
+}
+
+.sobre-bloco li {
+  margin-bottom: 12px;
+}
+
+.chamada-final {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff4e00;
+}
+
+.toast-message {
+  background: rgb(75, 151, 51);
+  color: #fff;
+  font-size: 16px;
+  padding: 30px 20px;
+}
+.toast-saldacao {
+  background: rgb(60, 144, 255);
+  color: #fff;
+  font-size: 16px;
+  padding: 30px 20px;
 }

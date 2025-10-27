@@ -8,10 +8,16 @@ import { ProvedorPesquisa} from "../components/Navgation/NavBar"
 import Login from "../components/Users/User";
 import ProdutosDoCarrinho from "../components/Carrinho/Carrinho";
 import Carousel from "../components/Galeria/Galeria"
+import { Outlet } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 
 import img4 from "../image/img4.png"
 import img1 from "../image/img1.png"
+import { CartContainer } from "../components/Carrinho/style";
+import ItemCarrinho from "../components/ItemCarrinho/ItemCarrinho";
+
+
 
 
 
@@ -38,18 +44,14 @@ function  Home(){
         <Container>
             <ProvedorPesquisa>
                 <CarrinhoProvedor>
+                    <ToastContainer />
                     <Header abrirLogin={() => setLoginAberto(true)}
                         carrinhoAberto={carrinhoAberto}
                         setCarrinhoAberto={setCarrinhoAberto}
                     />
                     <Carousel images={imagens} />
                     <InforSection/>
-                    {carrinhoAberto ? (
-                        <ProdutosDoCarrinho fecharCarrinho={() => setCarrinhoAberto(false)} />
-                    ):(
-                        <CardSection/>
-
-                    )}
+                    <CardSection/>
                     <FooterSection/>
                 </CarrinhoProvedor>
             </ProvedorPesquisa>

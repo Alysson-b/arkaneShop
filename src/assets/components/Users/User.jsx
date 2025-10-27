@@ -1,5 +1,6 @@
 import React,  {useState} from "react";
 import { LoginContainer, Overlay, CadastroContainer, RecuperarSenha} from "./style";
+import { toast } from "react-toastify";
 
 
 function Login( {fecharLogin}){
@@ -17,7 +18,7 @@ function Login( {fecharLogin}){
 
 
         localStorage.setItem(email, JSON.stringify(usuario))
-        alert("Cadastro realizado com sucesso!")
+        toast("Cadastro realizado com sucesso!", {position: "top-right", className: "toast-saldacao"})
         setTela("login")
     }
 
@@ -30,19 +31,19 @@ function Login( {fecharLogin}){
         const usuarioSalvo = localStorage.getItem(email)
 
         if(!usuarioSalvo){
-            alert("Usuario nao cadastrado");
+            toast("Usuario ou senha invalidos!", {position: "top-right", className: "toast-saldacao"})
             return
         }
 
         const usuario = JSON.parse(usuarioSalvo)
 
         if(usuario.senha !== senha){
-            alert("Senha incorreta")
+            toast("Usuario ou senha invalidos!", {position: "top-right", className: "toast-saldacao"})
             return
         }
 
         localStorage.setItem("usuarioLogado", JSON.stringify({nome: usuario.nome, email: usuario.email}))
-        alert(`Bem-vindo, ${usuario.nome}`)
+        toast( `SEJA BEM VINDO A ARKANE SHOP   ${usuario.nome}`, {position: "top-right", className: "toast-saldacao"})
         window.dispatchEvent(new Event("usuarioLogado")); // dispara evento
         fecharLogin()
     }

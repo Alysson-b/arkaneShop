@@ -3,6 +3,9 @@ import { Nav, NavBar, Navigation, Container } from "./style";
 import { usarPesquisar} from "../Navgation/NavBar"
 import minhaImagem from '../../image/userAkane.jpg'
 import ProdutosDoCarrinho from "../Carrinho/Carrinho"
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 
 
@@ -11,8 +14,9 @@ import ProdutosDoCarrinho from "../Carrinho/Carrinho"
 const ItemDoCarrinho = createContext()
 
 export const CarrinhoProvedor = ({ children }) =>{
-    const [carrinho, setCarrinho] = useState(() =>{
+        const [carrinho, setCarrinho] = useState(() =>{
         const carrinhoSalvo = localStorage.getItem("carrinho")
+    
         return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []
     })
     // monitorar as mudanças do carrinho
@@ -21,10 +25,11 @@ export const CarrinhoProvedor = ({ children }) =>{
     }, [carrinho]);
     
     const adicionarItemCarrinho = (novoItem) => {
+        
         const usuarioLogado = localStorage.getItem("usuarioLogado");
 
             if(!usuarioLogado){
-                alert("Voçe precisa estar logado para adicionar produtos ao carrinhos")
+                toast("Voçe precisa Logar para Adicionar items ao carrinho !!", {position: "top-center", className: "toast-message"})
                 return;
             }
         setCarrinho(prev => {
@@ -35,14 +40,18 @@ export const CarrinhoProvedor = ({ children }) =>{
                 // Atualiza apenas a quantidade
                 return prev.map(item =>
                     item.nome === novoItem.nome && item.tamanho === novoItem.tamanho
-                        ? { ...item, quantidade: item.quantidade + novoItem.quantidade }
-                        : item
+                    ? { ...item, quantidade: item.quantidade + novoItem.quantidade }
+                    : item
                 );
             } else {
                 return [...prev, novoItem];
             }
-        });
+        })
+        toast("Produto adicionado ao carrinho com sucesso!",  {possition : "top-right", className :"toast-message", })
+        
+
     };
+
 
     const calcularPrecoTotal = () => {
         return carrinho.reduce((total, item) => total + Number(item.preco) * item.quantidade, 0);
@@ -56,17 +65,17 @@ export const CarrinhoProvedor = ({ children }) =>{
 
     const finalizarPedido = () =>{
         if(carrinho.length ===0){
-            alert("Seu carrinho está vazio")
+            toast("Seu Carrinho está vazio",  {possition : "top-right", className :"toast-message", })
             return
         }
-        alert("Pedido finalizado com sucesso!");
+        toast("Pedido realizado com sucesso!",  {possition : "top-right", className :"toast-message", })
         setCarrinho([]);
         localStorage.removeItem("carrinho")
     }
 
 
     return(
-        <ItemDoCarrinho.Provider value={{ carrinho, adicionarItemCarrinho, removerItemCarrinho, calcularPrecoTotal, finalizarPedido}}>
+        <ItemDoCarrinho.Provider value={{ adicionarItemCarrinho, setCarrinho, removerItemCarrinho, calcularPrecoTotal, finalizarPedido, carrinho}}>
             { children }
         </ItemDoCarrinho.Provider>
 
@@ -81,76 +90,79 @@ function  Header({ abrirLogin, carrinhoAberto, setCarrinhoAberto}){
     const {buscarProduto, setBuscarProduto} = usarPesquisar()
     const { carrinho } = useCarrinho()
     const [menuAberto, setMenuAberto] = useState(false)
-    const secoes = ["Camisetas", "Bermudas", "Regatas", "Overaized","Suplementos", "outros" ]
+    const secoes = ["Camisetas", "Bermudas", "Regatas", "Ovesaized","Suplementos", "outros" ]
+    const [loginUsuario, setLoginUsuario] = useState(false)
     const [usuarioLogado, setUsuarioLogado] = useState(null)
-
+    
     useEffect(() => {
         const checarUsuario = () => {
             const usuario = localStorage.getItem("usuarioLogado");
             if (usuario) {
                 setUsuarioLogado(JSON.parse(usuario));
+                setLoginUsuario(true) 
             } else {
                 setUsuarioLogado(null);
+                setLoginUsuario(false) 
+                
+                
             }
         };
 
         checarUsuario(); // checa ao montar
-
+        
         // escuta mudanças no localStorage
         window.addEventListener("usuarioLogado", checarUsuario);
-
+        
         return () => {
             window.removeEventListener("usuarioLogado", checarUsuario);
         };
 }, [])
-    const deslogar = () =>{
-        localStorage.removeItem("usuarioLogado")
+const deslogar = () =>{
+    localStorage.removeItem("usuarioLogado")
         setUsuarioLogado(null)
-        alert("Voçe saiu da sua conta!")
+        setLoginUsuario(false)
+        toast("Que pena que nao achou o que queria. Obrigado pela visita e Até logo!", {possition : "top-right", className :"toast-message", })
     }
-
+    
     
     const handleFiltrarSecao = (secao) => {
-    setBuscarProduto(secao); // atualiza o input de pesquisa
-    setMenuAberto(false);
-    setCarrinhoAberto(false) 
+        setBuscarProduto(secao); // atualiza o input de pesquisa
+        setMenuAberto(false);
+        setCarrinhoAberto(false) 
 
         const element = document.getElementById("produtos-container");
-            if(element){
-                element.scrollIntoView({ behavior: "smooth"})
-            }
+        if(element){
+            element.scrollIntoView({ behavior: "smooth"})
+        }
     };
     
-
+    const navigate = useNavigate()
+    
+    
     
     return (
         <Navigation>
             <Nav>
                 <div>
                     <ul>
-                        <li>Home</li>
-                        <li>Sobre nós</li>
+                        <li onClick={() => navigate("/ ")}>Home</li>
+                        <li onClick={() => navigate("Sobre")}>Sobre nós</li>
                         <li>Fale conosco</li>
-                        </ul>
+                    </ul>
                             
                 </div>
 
                 <div className="produtos-menu">
-                    <img src={minhaImagem} alt="logo" />
-                    <h3>PRODUTOS  
-                        <span className="menu-wrapper" 
-                        onClick={() => setMenuAberto(!menuAberto)}> 
-                        <i className="fa-solid fa-bars"></i>{menuAberto && (
-                            <ul className="dropdown"> 
-                            {secoes.map((secao, index) => (
-                                <li key={index} onClick={() => handleFiltrarSecao(secao)}>{secao}</li>
-                            ))}
-                            </ul>
-                        )}
-                        </span> 
-                    </h3>
+                    <img onClick={() => navigate("/ ")} src={minhaImagem} alt="logo" />
                 </div>
+
             </Nav>
+                <div className="listProdutos">
+                    <ul>
+                        {secoes.map((secao, index) => ( <li key={index} onClick={() => handleFiltrarSecao(secao)}>{secao}</li>))}
+                    </ul>
+                </div>
+
             <NavBar>
                 <div className="search-container" >
                 <input value={buscarProduto} 
@@ -159,15 +171,22 @@ function  Header({ abrirLogin, carrinhoAberto, setCarrinhoAberto}){
                 <i className="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <div>
+                    {!loginUsuario?(
+                        <h3 className="logar" onClick={abrirLogin} >Entrar</h3>
+                    ):(
+                        <h3 className="logar" onClick={deslogar} >Sair</h3>
+                    )}
+
                     {!usuarioLogado? (
+                        
                         <i className="fa-solid fa-user" onClick={abrirLogin}></i>
                     ): (
-                        <i className="fa-solid fa-power-off" onClick={deslogar}></i>
+                        <i className="fa-solid fa-right-from-bracket" onClick={deslogar}></i>
                     )}
                     <div className="cart-icon">
                         <i 
                             className="fa-solid fa-cart-shopping" 
-                            onClick={() => setCarrinhoAberto(true)}
+                            onClick={() => navigate('/Carrinho')}
                             
                         ></i>
                         {carrinho.length > 0 && ( <span className="cart-count">{carrinho.length}</span>

@@ -12,14 +12,16 @@ export const Container = styled.div`
 export const Navigation = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
-    max-height: 200px;
+    padding: 20px 32px;
+    max-height: 150px;
     border-bottom: 1px solid white;
     background: #000;
 
     
 `;
+
 
 export const Nav = styled.div`
 
@@ -28,7 +30,7 @@ export const Nav = styled.div`
         align-items: center;
         justify-content: center;
         gap: 2em;
-        margin: 20px 8px;
+        margin: 20px;
     }
     ul{
         display: flex;
@@ -38,9 +40,9 @@ export const Nav = styled.div`
         list-style: none;
 
         li{
-                font-weight: 600;
+            font-weight: 600;
             font-family: "Roboto", sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: 0.3s ease-in-out;
         }
@@ -55,71 +57,13 @@ export const Nav = styled.div`
         width: 5rem;
         height: 5rem;
         border-radius: 50%;
+        cursor: pointer;
     }
     .Text{
         margin-bottom: 8px  0px;
     }
 
-    .produtos-menu {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    }
-
-    .produtos-menu h3 {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    position: relative;
-    }
-
-    .menu-wrapper {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    }
-
-    .menu-wrapper i {
-    font-size: 18px;
-    color: #ffffffa2;
-    }
-
     
-    .dropdown {
-    position: absolute;
-    top: 150%; 
-    left: -125px;
-    background: rgba(255, 255, 255, 0.95); 
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15); 
-    padding: 10px 0;
-    width: 1000px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    z-index: 100;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    opacity: 0.5;
-    }
-
-    .dropdown li {
-    padding: 8px 15px;
-    color: black;
-    cursor: pointer;
-    transition: background 0.2s;
-    border-radius: 5px;
-    font-weight: 700;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.2rem;
-    }
-
-    .dropdown li:hover {
-        width: 900px;
-        background: #080808;
-        color: aliceblue;
-        opacity: 1;
-}
 
 
 
@@ -134,8 +78,8 @@ export const NavBar = styled.div`
     h3{
             font-weight: 700;
             font-family: "Montserrat", sans-serif;
-            font-size: 0.9rem;
-            margin: 2em 0em 0.8em;
+            font-size: 1rem;
+            cursor: pointer;
     }
     input{
         width: 15rem;

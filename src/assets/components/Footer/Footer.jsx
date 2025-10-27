@@ -1,6 +1,6 @@
 import React from "react";
 import { Footer, Contatos, Informaçoes, Cartao } from "./style";
-import cartao from '../../image/Nubank.png'
+import cartao from '../../image/nubank.jpg'
 import cartao1 from '../../image/MasterCard.png'
 import cartao2 from '../../image/visa.png'
 

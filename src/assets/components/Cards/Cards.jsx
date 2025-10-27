@@ -3,59 +3,284 @@ import { HeaderMenu, Cards, Card } from "./style";
 import {usarPesquisar} from "../Navgation/NavBar"
 import { useCarrinho} from "../Header/Header"
 import minhaImagem2 from '../../image/black.png'
+import Black1 from "../../image/frontBlack.png"
+import white1 from "../../image/frontWhite.png"
+import blue1 from "../../image/frontBlue.png"
+import vinho1 from "../../image/frontViolet.png"
 import minhaImagem3 from '../../image/white.png'
 import minhaImagem4 from '../../image/violet.png'
 import minhaImagem5 from '../../image/blue.png'
 import minhaImagem6 from '../../image/regataAzul.png'
 import minhaImagem7 from '../../image/bermuda.png'
+import Bblack from '../../image/bermuda_black.png'
 import minhaImagem8 from '../../image/regata.vinho.png'
 import minhaImagem9 from '../../image/regata.png'
-import minhaImagem10 from '../../image/whey.png'
-import minhaImagem11 from '../../image/creatina.png'
-import minhaImagem12 from '../../image/multi.png'
-import minhaImagem13 from '../../image/bcaa.png'
+import femininaPreta from "../../image/feminina_black.png"
+import femininabranca from "../../image/feminina_white.png"
+import femininaazul from "../../image/feminina_blue.png"
+
+import { useNavigate } from "react-router-dom";
+import ItemCarrinho from "../ItemCarrinho/ItemCarrinho";
 
 
 
 
-function CardSection(){
+
+function CardSection({produto}){
 
     const {buscarProduto} = usarPesquisar()
-    const {adicionarItemCarrinho} =useCarrinho()
-    const [produtoSelecionado, setProdutoSelecionado] = useState(null)
-    const [tamanhaSelecionado, setTamanhoSelecionado] = useState("")
     const produtos = [
-        {img: minhaImagem2, nome: 'Camiseta Preta Fitness', preco: "89.90", descricao: "Camiseta preta de alta performance, ideal para treinos intensos.", categoria: "Camisetas"},
-        {img: minhaImagem3, nome: 'Camiseta Branca Fitness', preco: "89.90", descricao: "Camiseta branca leve e confortável, perfeita para qualquer exercício.", categoria: "Camisetas"},
-        {img: minhaImagem4, nome: 'Camiseta Vinho Fitness', preco: "89.90", descricao: "Camiseta vinho com tecido respirável, combina estilo e performance.", categoria: "Camisetas"},
-        {img: minhaImagem5, nome: 'Camiseta Azul Fitness', preco: "89.90", descricao: "Camiseta azul fitness, resistente e ideal para atividades físicas diárias.", categoria: "Camisetas"},
-        {img: minhaImagem6, nome: 'Regata Azul Fitness', preco: "89.90", descricao: "Regata azul, leve e confortável, perfeita para treinos de verão.", categoria: "Regatas"},
-        {img: minhaImagem7, nome: 'Bermuda Azul Fitness', preco: "89.90", descricao: "Bermuda azul de tecido elástico, ideal para liberdade de movimento.", categoria: "Bermudas"},
-        {img: minhaImagem8, nome: 'Regata Vinho Fitness', preco: "89.90", descricao: "Regata vinho, estilo e conforto para treinos intensos.", categoria: "Regatas"},
-        {img: minhaImagem9, nome: 'Regata Preta Fitness', preco: "89.90", descricao: "Regata preta básica, confortável e versátil para qualquer atividade.", categoria: "Regatas"},
-        {img: minhaImagem10, nome: "Whey Protein", preco: "109.90", descricao: "Pote de suplemento de proteína Whey, embalagem azul, estilo realista", categoria: "Suplementos"},
-        {img: minhaImagem11, nome: "Creatina", preco: "99.90", descricao: "Pote de creatina monohidratada, embalagem vermelha, estilo realista", categoria: "Suplementos"},
-        {img: minhaImagem12, nome: "Multivitamínico", preco: "59.90", descricao: "Frasco de multivitamínico em cápsulas, fundo branco, estilo realista", categoria: "Suplementos"},
-        {img: minhaImagem13, nome: "BCAA", preco: "89.90", descricao: "Pote de BCAA em pó, embalagem preta com detalhes neon, estilo realista", categoria: "Suplementos"},
-];
-    const openModal = (produtos) => {
-        setProdutoSelecionado(produtos)
-        setTamanhoSelecionado("")
-        setQuantidade(1)
-    }
-    const fecharModal = () => {
-        setProdutoSelecionado(null)
-        setTamanhoSelecionado("")
-    }
+        {img: minhaImagem2, nome: 'Camiseta Preta Fitness', preco: "89.90", descricao: "Camiseta preta de alta performance, ideal para treinos intensos.", categoria: "Camisetas",
+            cores: [
+                {
+                cor:"preta",
+                frente: minhaImagem2,
+                costas: Black1
+                },
+                {
+                cor:"branca",
+                frente: minhaImagem3,
+                costas: white1
+                },
+                {
+                cor:"azul",
+                frente: minhaImagem5,
+                costas: blue1
+                },
+                {
+                cor:"vinho",
+                frente: minhaImagem4,
+                costas: vinho1
+                }
+        ]
+        },
+        {img: minhaImagem3, nome: 'Camiseta Branca Fitness', preco: "89.90", descricao: "Camiseta branca leve e confortável, perfeita para qualquer exercício.", categoria: "Camisetas",
+            cores: [
+                {
+                cor:"branca",
+                frente: minhaImagem3,
+                costas: white1
+                },
+                {
+                cor:"preta",
+                frente: minhaImagem2,
+                costas: Black1
+                },
+                {
+                cor:"azul",
+                frente: minhaImagem5,
+                costas: blue1
+                },
+                {
+                cor:"vinho",
+                frente: minhaImagem4,
+                costas: vinho1
+                }
+        ]
+        },
+        {img: minhaImagem4, nome: 'Camiseta Vinho Fitness', preco: "89.90", descricao: "Camiseta vinho com tecido respirável, combina estilo e performance.", categoria: "Camisetas",
+                cores: [
+                {
+                cor:"vinho",
+                frente: minhaImagem4,
+                costas: vinho1
+                },
+                {
+                cor:"azul",
+                frente: minhaImagem5,
+                costas: blue1
+                },
+                {
+                cor:"branca",
+                frente: minhaImagem3,
+                costas: white1
+                },
+                {
+                cor:"preta",
+                frente: minhaImagem2,
+                costas: Black1
+                }
+        ]
+        },
+        {img: minhaImagem5, nome: 'Camiseta Azul Fitness', preco: "89.90", descricao: "Camiseta azul fitness, resistente e ideal para atividades físicas diárias.", categoria: "Camisetas",
+            cores: [
+                {
+                cor:"azul",
+                frente: minhaImagem5,
+                costas: blue1
+                },
+                {
+                cor:"vinho",
+                frente: minhaImagem4,
+                costas: vinho1
+                },
+                {
+                cor:"branca",
+                frente: minhaImagem3,
+                costas: white1
+                },
+                {
+                cor:"preta",
+                frente: minhaImagem2,
+                costas: Black1
+                }
+        ]
+        },
+        {img: minhaImagem6, nome: 'Regata Azul Fitness', preco: "89.90", descricao: "Regata azul, leve e confortável, perfeita para treinos de verão.", categoria: "Regatas",
+            cores: [
+                {
+                cor:"azul",
+                frente: minhaImagem6,
+                costas: minhaImagem6
+                },
+                {
+                cor:"vinho",
+                frente: minhaImagem8,
+                costas: minhaImagem8
+                },
+                {
+                cor:"preta",
+                frente: minhaImagem9,
+                costas: minhaImagem9
+                }
+        ]
+        },
+        {img: minhaImagem8, nome: 'Regata Vinho Fitness', preco: "89.90", descricao: "Regata vinho, estilo e conforto para treinos intensos.", categoria: "Regatas",
+            cores: [
+                {
+                cor:"vinho",
+                frente: minhaImagem8,
+                costas: minhaImagem8
+                },
+                {
+                cor:"azul",
+                frente: minhaImagem6,
+                costas: minhaImagem6
+                },
+                {
+                cor:"preta",
+                frente: minhaImagem9,
+                costas: minhaImagem9
+                }
+        ]
+        },
+        {img: minhaImagem9, nome: 'Regata Preta Fitness', preco: "89.90", descricao: "Regata preta básica, confortável e versátil para qualquer atividade.", categoria: "Regatas",
+            cores: [
+                {
+                cor:"preta",
+                frente: minhaImagem9,
+                costas: minhaImagem9
+                },
+                {
+                cor:"azul",
+                frente: minhaImagem6,
+                costas: minhaImagem6
+                },
+                {
+                cor:"vinho",
+                frente: minhaImagem8,
+                costas: minhaImagem8
+                }
+        ]
+        },
+        {img: minhaImagem7, nome: 'Bermuda Azul Fitness', preco: "89.90", descricao: "Bermuda azul de tecido elástico, ideal para liberdade de movimento.", categoria: "Bermudas",
+            cores: [
+                {
+                cor:"azul",
+                frente: minhaImagem7,
+                costas: minhaImagem7
+                },
+                {
+                cor:"preta",
+                frente: Bblack,
+                costas: Bblack
+                }
+        ]
+        },
+        {img: Bblack, nome: 'Bermuda Preta Fitness', preco: "89.90", descricao: "Bermuda Preta de tecido elástico, ideal para liberdade de movimento.", categoria: "Bermudas",
+            cores: [
+                {
+                cor:"preta",
+                frente: Bblack,
+                costas: Bblack
+                },
+                {
+                cor:"azul",
+                frente: minhaImagem7,
+                costas: minhaImagem7
+                }
+        ]
+        },
+        {img: femininaPreta, nome: 'Camiseta Preta feminina Fitness', preco: "79.90", descricao: "Camiseta preta básica, confortável e versátil para qualquer atividade.", categoria: "Camisetas",
+            cores: [
+                {
+                    cor:"preta",
+                    frente: femininaPreta,
+                    costas: femininaPreta
+                },
+                {
+                    cor:"branca",
+                    frente: femininabranca,
+                    costas: femininabranca
+                },
+                {
+                cor:"azul",
+                frente: femininaazul,
+                costas: femininaazul
+                }
+        ]
+        },
+        {img: femininabranca, nome: 'Camiseta Branca feminina Fitness', preco: "79.90", descricao: "Camiseta Branca básica, confortável e versátil para qualquer atividade.", categoria: "Camisetas",
+            cores: [
+                {
+                    cor:"branca",
+                    frente: femininabranca,
+                    costas: femininabranca
+                },
+                {
+                    cor:"preta",
+                    frente: femininaPreta,
+                    costas: femininaPreta
+                },
+                {
+                cor:"azul",
+                frente: femininaazul,
+                costas: femininaazul
+                }
+        ]
+        },
+        {img: femininaazul, nome: 'Camiseta Azul feminina Fitness', preco: "79.90", descricao: "Camiseta azul básica, confortável e versátil para qualquer atividade.", categoria: "camisetas",
+            cores: [
+                {
+                cor:"azul",
+                frente: femininaazul,
+                costas: femininaazul
+                },
+                {
+                    cor:"branca",
+                    frente: femininabranca,
+                    costas: femininabranca
+                },
+                {
+                    cor:"preta",
+                    frente: femininaPreta,
+                    costas: femininaPreta
+                }
+                
+        ]
+        },
+    ];
     const filtrados = produtos.filter(p => 
         p.nome.toLowerCase().includes(buscarProduto.toLowerCase()) ||
         (p.categoria && p.categoria.toLowerCase().includes(buscarProduto.toLowerCase()))
     );
-
-    const [quantidade, setQuantidade] = useState(1)
-
-
-
+    
+        const navigate = useNavigate()
+        const verProduto = () =>{
+            navigate("/itemCarrinho", {state: {produtoSelecionado: produto}})
+        }
+    
+    
 return(
         <HeaderMenu>
             <h1>
@@ -69,47 +294,14 @@ return(
                         <img src={produto.img} alt={produto.nome} />
                         <p>Em até 2 x {(produto.preco / 2).toFixed(2)}</p>
                         <h3>{produto.preco}</h3>
-                        <button onClick={() => openModal(produto)}>Comprar</button>
+                        <button onClick={() => navigate('/itemCarrinho', {state: {produto }})}>Comprar</button>
                     </Card>
                 ))
             ) : (
                 <p className="produto-nao-encontrado">Produto não encontrado!</p>
             )}
+
         </Cards>
-
-        {produtoSelecionado && (
-            <div className="modal-overlay" onClick={fecharModal}>
-                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                <div className="modal-left">
-                    <img src={produtoSelecionado.img} alt={produtoSelecionado.nome} />
-                </div>
-
-
-                <div className="modal-right">
-                    <h2>{produtoSelecionado.nome}</h2>
-                    <h3>{produtoSelecionado.descricao}</h3>
-
-                <div className="quantidade">
-                    <button onClick={() => setQuantidade(prev => (prev > 1 ? prev - 1 : 1))}>-</button>
-                    <input type="text" value={quantidade} onChange={(e) => setQuantidade(Number(e.target.value))} min={1} />
-                    <button onClick={() => setQuantidade(prev => prev + 1)}>+</button>
-                </div>
-
-                    <p className="preco">R$ {produtoSelecionado.preco}</p>
-                    <ul className="tamanhos">
-                        {["P", "M", "G", "GG"].map((tamanho) =>(
-                            <li key={tamanho} className={tamanhaSelecionado === tamanho ? "ativo" : ""} 
-                            onClick={() => setTamanhoSelecionado(tamanho)}
-                            >
-                            {tamanho}
-                        </li>
-                        ))}
-                    </ul>
-                    <button className="btn-comprar" disabled={!tamanhaSelecionado} onClick={() => {adicionarItemCarrinho({...produtoSelecionado, tamanho: tamanhaSelecionado, quantidade}); fecharModal()}}> {tamanhaSelecionado? "Adicionar ao carrinho": "Selecione um tamanho"}</button>
-                </div>
-                </div>
-            </div>
-        )}
         </HeaderMenu>
 
         
