@@ -146,7 +146,7 @@ const deslogar = () =>{
                 <div>
                     <ul>
                         <li onClick={() => navigate("/ ")}>Home</li>
-                        <li onClick={() => navigate("Sobre")}>Sobre nós</li>
+                        <li onClick={() => navigate("/Sobre")}>Sobre nós</li>
                         <li>Fale conosco</li>
                     </ul>
                             

@@ -44,7 +44,7 @@ function Login( {fecharLogin}){
 
         localStorage.setItem("usuarioLogado", JSON.stringify({nome: usuario.nome, email: usuario.email}))
         toast( `SEJA BEM VINDO A ARKANE SHOP   ${usuario.nome}`, {position: "top-right", className: "toast-saldacao"})
-        window.dispatchEvent(new Event("usuarioLogado")); // dispara evento
+        window.dispatchEvent(new Event("usuarioLogado"));
         fecharLogin()
     }
 

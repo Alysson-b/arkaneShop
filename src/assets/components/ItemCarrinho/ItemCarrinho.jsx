@@ -38,6 +38,7 @@ const [imagemAtiva, setImagemAtiva] = useState("frente")
     const [corSelecionada, setCorSelecionada] = useState(coresArray[0]?.cor || "")
     const [imagemAtual, setImagemAtual] = useState(coresArray[0]?.img || produto?.img)
     const corAtual = coresArray.find((c)  => c.cor === corSelecionada)
+    
 
     const precoTotal = quantidade * Number(produto.preco)
     const precoPix = precoTotal  * 0.95;
