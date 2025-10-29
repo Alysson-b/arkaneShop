@@ -19,7 +19,7 @@ export const CarrinhoProvedor = ({ children }) =>{
     
         return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []
     })
-    // monitorar as mudanças do carrinho
+    
     useEffect(() => {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
     }, [carrinho]);
@@ -29,7 +29,7 @@ export const CarrinhoProvedor = ({ children }) =>{
         const usuarioLogado = localStorage.getItem("usuarioLogado");
 
             if(!usuarioLogado){
-                toast("Voçe precisa Logar para Adicionar items ao carrinho !!", {position: "top-center", className: "toast-message"})
+                toast.success("Voçe precisa Logar para Adicionar items ao carrinho !!", {position: "top-rigth", className: "toast-message"})
                 return;
             }
         setCarrinho(prev => {
@@ -47,7 +47,8 @@ export const CarrinhoProvedor = ({ children }) =>{
                 return [...prev, novoItem];
             }
         })
-        toast("Produto adicionado ao carrinho com sucesso!",  {possition : "top-right", className :"toast-message", })
+        toast.success("Produto adicionado ao carrinho com sucesso!",  {possition : "top-right", className :"toast-message", })
+        console.log(toast)
         
 
     };
@@ -65,10 +66,10 @@ export const CarrinhoProvedor = ({ children }) =>{
 
     const finalizarPedido = () =>{
         if(carrinho.length ===0){
-            toast("Seu Carrinho está vazio",  {possition : "top-right", className :"toast-message", })
+            toast.success("Seu Carrinho está vazio",  {possition : "top-right", className :"toast-message", })
             return
         }
-        toast("Pedido realizado com sucesso!",  {possition : "top-right", className :"toast-message", })
+        toast.success("Pedido realizado com sucesso!",  {possition : "top-right", className :"toast-message", })
         setCarrinho([]);
         localStorage.removeItem("carrinho")
     }
@@ -121,7 +122,7 @@ const deslogar = () =>{
     localStorage.removeItem("usuarioLogado")
         setUsuarioLogado(null)
         setLoginUsuario(false)
-        toast("Que pena que nao achou o que queria. Obrigado pela visita e Até logo!", {possition : "top-right", className :"toast-message", })
+        toast.success("Que pena que nao achou o que queria. Obrigado pela visita e Até logo!", {possition : "top-right", className :"toast-message", })
     }
     
     
@@ -143,7 +144,19 @@ const deslogar = () =>{
     return (
         <Navigation>
             <Nav>
-                <div>
+                <div className="produtos-menu">
+                    <img onClick={() => navigate("/ ")} src={minhaImagem} alt="logo" />
+                </div>
+
+                <div className="listProdutos">
+                    <ul>
+                        {secoes.map((secao, index) => ( <li key={index} onClick={() => handleFiltrarSecao(secao)}>{secao}</li>))}
+                    </ul>
+                </div>
+            </Nav>
+
+            <NavBar>
+                <div className="navLink">
                     <ul>
                         <li onClick={() => navigate("/ ")}>Home</li>
                         <li onClick={() => navigate("/Sobre")}>Sobre nós</li>
@@ -152,24 +165,11 @@ const deslogar = () =>{
                             
                 </div>
 
-                <div className="produtos-menu">
-                    <img onClick={() => navigate("/ ")} src={minhaImagem} alt="logo" />
-                </div>
-
-            </Nav>
-                <div className="listProdutos">
-                    <ul>
-                        {secoes.map((secao, index) => ( <li key={index} onClick={() => handleFiltrarSecao(secao)}>{secao}</li>))}
-                    </ul>
-                </div>
-
-            <NavBar>
                 <div className="search-container" >
                 <input value={buscarProduto} 
                 onChange={(e)=> setBuscarProduto(e.target.value)}
                 type="Text" placeholder="Buscar" />
                 <i className="fa-solid fa-magnifying-glass"></i>
-                </div>
                 <div>
                     {!loginUsuario?(
                         <h3 className="logar" onClick={abrirLogin} >Entrar</h3>
@@ -193,6 +193,7 @@ const deslogar = () =>{
                     )}
                     </div>
                                 
+                    </div>
                 </div>
             </NavBar>
         

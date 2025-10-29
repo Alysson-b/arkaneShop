@@ -5,7 +5,7 @@ export const CardCarrosel = styled.div`
     .carousel {
         position: relative;
         width: 100%;
-        height: 700px;
+        height: 400px;
         margin: auto;
         overflow: hidden;
         border-radius: 12px;
@@ -14,7 +14,7 @@ export const CardCarrosel = styled.div`
 
     .carousel img {
         width: 100%;
-        height: 700px;
+        height: 400px;
         object-fit: cover;
         position: absolute;
         top: 0;

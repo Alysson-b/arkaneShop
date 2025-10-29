@@ -5,7 +5,7 @@ import { CardCarrosel } from "./style";
 const Carousel = ({ images }) => {
     const [atualIndex, setAtualIndex] = useState(0);
 
-    // Troca automática de slides
+    
     useEffect(() => {
         const intervalo = setInterval(() => {
         setAtualIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -13,13 +13,13 @@ const Carousel = ({ images }) => {
         return () => clearInterval(intervalo);
     }, [images]);
 
-    const nextSlide = () => {
-        setAtualIndex((prevIndex) => (prevIndex + 1) % images.length);
-    };
+    // const nextSlide = () => {
+    //     setAtualIndex((prevIndex) => (prevIndex + 1) % images.length);
+    // };
 
-    const prevSlide = () => {
-        setAtualIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-    };
+    // const prevSlide = () => {
+    //     setAtualIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    // };
 
     return (
         <CardCarrosel>

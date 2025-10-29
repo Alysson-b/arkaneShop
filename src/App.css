@@ -75,34 +75,10 @@
 .quantidade input {
   width: 25px;
   text-align: center;
-  
   border: 1px solid #ccc;
-  
   border-radius: 4px;
 }
 
-.listProdutos ul{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
-  list-style: none;
-  font-size: 20px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  margin-top: 2rem;
-  margin-right: 7rem;
-
-}
-.listProdutos li{
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-.listProdutos li:hover{
-  text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff;
-  color: #fcfcff;
-
-}
 
 
 .sobre-container {

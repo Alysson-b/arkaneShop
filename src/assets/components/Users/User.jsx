@@ -18,7 +18,7 @@ function Login( {fecharLogin}){
 
 
         localStorage.setItem(email, JSON.stringify(usuario))
-        toast("Cadastro realizado com sucesso!", {position: "top-right", className: "toast-saldacao"})
+        toast.success("Cadastro realizado com sucesso!", {position: "top-right", className: "toast-saldacao"})
         setTela("login")
     }
 
@@ -31,19 +31,19 @@ function Login( {fecharLogin}){
         const usuarioSalvo = localStorage.getItem(email)
 
         if(!usuarioSalvo){
-            toast("Usuario ou senha invalidos!", {position: "top-right", className: "toast-saldacao"})
+            toast.error("Usuario ou senha invalidos!", {position: "top-right", className: "toast-saldacao"})
             return
         }
 
         const usuario = JSON.parse(usuarioSalvo)
 
         if(usuario.senha !== senha){
-            toast("Usuario ou senha invalidos!", {position: "top-right", className: "toast-saldacao"})
+            toast.error("Usuario ou senha invalidos!", {position: "top-right", className: "toast-saldacao"})
             return
         }
 
         localStorage.setItem("usuarioLogado", JSON.stringify({nome: usuario.nome, email: usuario.email}))
-        toast( `SEJA BEM VINDO A ARKANE SHOP   ${usuario.nome}`, {position: "top-right", className: "toast-saldacao"})
+        toast.success( `SEJA BEM VINDO A ARKANE SHOP   ${usuario.nome}`, {position: "top-right", className: "toast-saldacao"})
         window.dispatchEvent(new Event("usuarioLogado"));
         fecharLogin()
     }

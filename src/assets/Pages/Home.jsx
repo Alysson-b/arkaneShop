@@ -10,10 +10,12 @@ import ProdutosDoCarrinho from "../components/Carrinho/Carrinho";
 import Carousel from "../components/Galeria/Galeria"
 import { Outlet } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import colection from "../image/coleçao.png"
+import colection2 from "../image/coleçao2.png"
+import colection3 from "../image/colecao3.png"
 
 
-import img4 from "../image/img4.png"
-import img1 from "../image/img1.png"
+
 import { CartContainer } from "../components/Carrinho/style";
 import ItemCarrinho from "../components/ItemCarrinho/ItemCarrinho";
 
@@ -26,7 +28,7 @@ import ItemCarrinho from "../components/ItemCarrinho/ItemCarrinho";
 function  Home(){
     const [loginAberto, setLoginAberto] = useState(false)
     const [carrinhoAberto, setCarrinhoAberto] = useState(false)
-    const imagens = [img4, img1]
+    const imagens = [colection, colection2, colection3]
 
     useEffect(() => {
         if (carrinhoAberto) {
