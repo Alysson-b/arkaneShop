@@ -17,12 +17,12 @@ function App() {
           <BrowserRouter>
             <ProvedorPesquisa>
               <CarrinhoProvedor>
-                <Routes>
-                  <Route path="/" element={<Home/>} />
-                  <Route path="itemCarrinho" element={<ItemCarrinho />} /> 
-                  <Route path="Carrinho" element={<ProdutosDoCarrinho />} /> 
-                  <Route path="Sobre" element={<Sobre />} /> 
-                </Routes>
+                  <Routes>
+                    <Route path="/" element={<Home/>} />
+                    <Route path="itemCarrinho" element={<ItemCarrinho />} /> 
+                    <Route path="Carrinho" element={<ProdutosDoCarrinho />} /> 
+                    <Route path="Sobre" element={<Sobre />} /> 
+                  </Routes>
                 <ToastContainer />
               </CarrinhoProvedor>
             </ProvedorPesquisa>

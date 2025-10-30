@@ -29,7 +29,8 @@ export const CarrinhoProvedor = ({ children }) =>{
         const usuarioLogado = localStorage.getItem("usuarioLogado");
 
             if(!usuarioLogado){
-                toast.success("Voçe precisa Logar para Adicionar items ao carrinho !!", {position: "top-rigth", className: "toast-message"})
+                toast.error("Voçe precisa Logar-se para Adicionar items ao carrinho !!", {position: "top-right", className: "toast-message"})
+                
                 return;
             }
         setCarrinho(prev => {
@@ -47,7 +48,7 @@ export const CarrinhoProvedor = ({ children }) =>{
                 return [...prev, novoItem];
             }
         })
-        toast.success("Produto adicionado ao carrinho com sucesso!",  {possition : "top-right", className :"toast-message", })
+        toast.success("Produto adicionado ao carrinho com sucesso!",  {position : "top-right", className :"toast-message", })
         console.log(toast)
         
 
@@ -66,10 +67,9 @@ export const CarrinhoProvedor = ({ children }) =>{
 
     const finalizarPedido = () =>{
         if(carrinho.length ===0){
-            toast.success("Seu Carrinho está vazio",  {possition : "top-right", className :"toast-message", })
             return
         }
-        toast.success("Pedido realizado com sucesso!",  {possition : "top-right", className :"toast-message", })
+        toast.success("Pedido realizado com sucesso!",  {position : "top-right", className :"toast-message", })
         setCarrinho([]);
         localStorage.removeItem("carrinho")
     }
@@ -122,7 +122,7 @@ const deslogar = () =>{
     localStorage.removeItem("usuarioLogado")
         setUsuarioLogado(null)
         setLoginUsuario(false)
-        toast.success("Que pena que nao achou o que queria. Obrigado pela visita e Até logo!", {possition : "top-right", className :"toast-message", })
+        toast.info("Que pena que nao achou o que queria. Obrigado pela visita e Até logo!", {position : "top-right", className :"toast-message", })
     }
     
     

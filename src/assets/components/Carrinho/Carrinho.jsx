@@ -8,6 +8,7 @@ import QrCode from "../../../../public/QrCode.png"
 import boleto from "../../../../public/boletobancario.jpg"
 import cartao from "../../../../public/cartao.png"
 import axios from "axios"
+import { toast } from "react-toastify"
 
 
 
@@ -65,7 +66,13 @@ function ProdutosDoCarrinho({ fecharCarrinho}){
 
         async function BuscarDados() {
             try{
-                const {data} = await axios.get(`http://viacep.com.br/ws/${pesquisarDados}/json/`)
+                const response = await fetch(`http://viacep.com.br/ws/${pesquisarDados}/json/`)
+                if(!response.ok){
+                    throw new Error('Error na requisição: ' + response.status)
+
+                }
+                const data = await response.json()
+                console.log(data)
     
                 setDadosCep(data)
                 document.getElementById("cep").value = "";
@@ -96,6 +103,7 @@ function ProdutosDoCarrinho({ fecharCarrinho}){
     
                 }
         }
+
     
     return (
         <>
@@ -243,14 +251,14 @@ function ProdutosDoCarrinho({ fecharCarrinho}){
                     <input type="text" placeholder="Nome impressono cartão*"/>
                     <div className="validade">
                         <input type="number" placeholder="Validade* 00/00"/>
-                        <input type="number" placeholder="Código de verificação*"/>
+                        <input className="cvv" type="number" placeholder="CVV"/>
                     </div>
                     <input type="text" placeholder="Apelido para este cartão*"/>
                     <div className="validade">
                         <input type="number" placeholder="CPF/ CNPJ do titular"/>
                         <input type="number" placeholder="Data de nascimento"/>
                     </div>
-                    <button  type="submit">PAGAR</button>
+                    <button  type="submit" onClick={finalizarPedido}>PAGAR</button>
                 </div>
 
             </div>)}

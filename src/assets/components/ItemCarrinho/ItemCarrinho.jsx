@@ -5,7 +5,8 @@ import {ItemsCarrinho, ItemImage, InforItems} from './style'
 import { Cards, Card } from "../Cards/style";
 import { useLocation } from "react-router-dom";
 import { usarPesquisar } from "../Navgation/NavBar";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+
 
 
 

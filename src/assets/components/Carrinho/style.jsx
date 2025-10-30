@@ -404,7 +404,7 @@ export const DadosCompra = styled.div`
     }
     .containerCredito{
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         margin-top: 1rem;
         img{
             width: 95%;
@@ -425,7 +425,14 @@ export const DadosCompra = styled.div`
         }
         .validade{
             display: flex;
-            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            input{
+                width: 40%;
+            }
+            .cvv{
+                width: 20%;
+            }
         }
         button{
             width: 100%;

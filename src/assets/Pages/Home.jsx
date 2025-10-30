@@ -16,6 +16,8 @@ import colection3 from "../image/colecao3.png"
 
 
 
+
+
 import { CartContainer } from "../components/Carrinho/style";
 import ItemCarrinho from "../components/ItemCarrinho/ItemCarrinho";
 
@@ -37,7 +39,7 @@ function  Home(){
                 element.scrollIntoView({ behavior: "smooth" });
             }
         }
-    }, [carrinhoAberto]); // roda quando carrinhoAberto muda
+    }, [carrinhoAberto]); 
 
     
 
@@ -46,7 +48,6 @@ function  Home(){
         <Container>
             <ProvedorPesquisa>
                 <CarrinhoProvedor>
-                    <ToastContainer />
                     <Header abrirLogin={() => setLoginAberto(true)}
                         carrinhoAberto={carrinhoAberto}
                         setCarrinhoAberto={setCarrinhoAberto}
