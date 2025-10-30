@@ -66,7 +66,7 @@ function ProdutosDoCarrinho({ fecharCarrinho}){
 
         async function BuscarDados() {
             try{
-                const response = await fetch(`http://viacep.com.br/ws/${pesquisarDados}/json/`)
+                const response = await fetch(`https://viacep.com.br/ws/${pesquisarDados}/json/`)
                 if(!response.ok){
                     throw new Error('Error na requisição: ' + response.status)
 
