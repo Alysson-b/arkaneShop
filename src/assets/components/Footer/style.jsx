@@ -69,8 +69,7 @@ export const Informaçoes = styled.div`
         transition: 0.3s ease-in-out;
         
         &:hover{
-            text-shadow: 0 0 10px #494949, 0 0 20px #494949, 0 0 30px #494949;
-            color: #fcfcff;
+            color: #000000;
         }
     }
     img{
